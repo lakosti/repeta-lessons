@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deposit } from "../redux/store";
+import { deposit, withdraw } from "../redux/store";
 
 export default function Balance() {
   const balance = useSelector((state) => state.balance.value);
@@ -9,7 +9,7 @@ export default function Balance() {
     <div>
       <p>Balance: {balance}</p>
       <button onClick={() => dispatch(deposit(5))}> Deposit credits</button>
-      <button> Withdraw credits</button>
+      <button onClick={() => dispatch(withdraw(5))}> Withdraw credits</button>
     </div>
   );
 }
