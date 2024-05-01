@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 
+//екшен для депозиту
 export const deposit = (value) => {
   return {
     type: "balance/deposit",
@@ -7,12 +8,23 @@ export const deposit = (value) => {
   };
 };
 
+//екшен для зняття
 export const withdraw = (value) => {
   return {
     type: "balance/withdraw",
     payload: value,
   };
 };
+
+//екшен для зміни мови
+export const changeLang = (newLang) => {
+  return {
+    type: "locale/changeLang",
+    payload: newLang,
+  };
+};
+
+//початкове значення
 const initialState = {
   balance: {
     value: 0,
@@ -38,6 +50,14 @@ const rootReducer = (state = initialState, action) => {
         balance: {
           ...state.balance,
           value: state.balance.value - action.payload,
+        },
+      };
+    case "locale/changeLang":
+      return {
+        ...state,
+        locale: {
+          ...state.locale,
+          lang: action.payload,
         },
       };
     default:
