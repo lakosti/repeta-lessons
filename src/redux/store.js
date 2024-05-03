@@ -1,6 +1,6 @@
-import { combineReducers, createStore } from "redux";
-import { balanceReducer } from "./balanceSlice";
-import { localeReducer } from "./localeSlice";
+// import { combineReducers, createStore } from "redux";
+// import { balanceReducer } from "./balanceSlice";
+// import { localeReducer } from "./localeSlice";
 
 // //*початкове значення
 // const initialState = {
@@ -16,10 +16,10 @@ import { localeReducer } from "./localeSlice";
 // };
 
 //* якщо редюсерів багато то міксуємо через combine і задаємо їм як початкове значення редюсер де у стейті вказане початкове значення state
-const rootReducer = combineReducers({
-  balance: balanceReducer, //*1 слайс
-  locale: localeReducer,
-});
+// const rootReducer = combineReducers({
+//   balance: balanceReducer, //*1 слайс
+//   locale: localeReducer,
+// });
 // const rootReducer = (state = initialState, action) => {
 //   switch (action.type) {
 //     case "balance/deposit":
@@ -50,4 +50,4 @@ const rootReducer = combineReducers({
 //       return state;
 //   }
 // };
-export const store = createStore(rootReducer);
+// export const store = createStore(rootReducer);
