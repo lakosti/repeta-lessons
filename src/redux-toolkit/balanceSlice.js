@@ -37,10 +37,10 @@ const slice = createSlice({
   initialState: { value: 0 },
   reducers: {
     deposit: (state, action) => {
-      state.value + action.payload;
+      state.value += action.payload;
     },
     withdraw: (state, action) => {
-      state.value - action.payload;
+      state.value -= action.payload;
     },
   },
 });
