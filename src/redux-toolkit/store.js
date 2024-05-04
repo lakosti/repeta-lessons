@@ -18,12 +18,18 @@ const balancePersistConfig = {
   storage,
   whitelist: ["value"],
 };
+const localePersistConfig = {
+  key: "lang",
+  storage,
+  whitelist: ["lang"],
+};
 const persistedReducerBalance = persistReducer(balancePersistConfig, balanceReducer);
+const persistedReducerLocale = persistReducer(localePersistConfig, localeReducer);
 
 export const store = configureStore({
   reducer: {
     balance: persistedReducerBalance,
-    locale: localeReducer,
+    locale: persistedReducerLocale,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
