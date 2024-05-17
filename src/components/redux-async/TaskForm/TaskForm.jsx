@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addTask } from "../../../redux-async/tasksOps";
 
 const initialValue = {
-  createdAt: "", //? вказуємо значення з бека і атрибут name повинен бути таким самим
+  createdAt: "", //? вказуємо значення з бека і атрибут name у Field повинен бути таким самим
   name: "",
 };
 
