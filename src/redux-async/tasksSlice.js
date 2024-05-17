@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchTasks } from "./tasksOps";
+import { addTask, fetchTasks } from "./tasksOps";
 
 const slice = createSlice({
   name: "tasks",
@@ -7,6 +7,12 @@ const slice = createSlice({
     items: [],
     isLoading: false,
     error: null,
+    //? якщо потрібні різні лоадінги
+    // loading: {
+    //   adding: false,
+    //   fetching: false,
+    //   deelting: false
+    // }
   },
   //? власні екшени
   //reducers: {},
@@ -14,10 +20,28 @@ const slice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchTasks.pending, (state) => {
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(fetchTasks.fulfilled, (state, action) => {
         state.items = action.payload; //* відображаємо / встановляємо те що прийшло з бека
+        state.isLoading = false;
+      })
+      .addCase(fetchTasks.rejected, (state) => {
+        state.error = true;
+        state.isLoading = false;
+      })
+      .addCase(addTask.pending, (state) => {
+        state.error = false;
+        state.isLoading = true;
+      })
+      .addCase(addTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items.push(action.payload);
+        // state.items = [...state.items, action.payload]; //! при додаванні зажди розпилюємо інакше один додамо і всі видалимо
+      })
+      .addCase(addTask.rejected, (state) => {
+        state.error = true;
         state.isLoading = false;
       }),
 });
