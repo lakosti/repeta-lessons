@@ -2,6 +2,11 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../../redux-async/tasksOps";
 
+const initialValue = {
+  createdAt: "", //? вказуємо значення з бека і атрибут name повинен бути таким самим
+  name: "",
+};
+
 export default function TaskForm() {
   const dispatch = useDispatch();
 
@@ -12,14 +17,11 @@ export default function TaskForm() {
   };
 
   return (
-    <Formik
-      initialValues={{
-        createdAt: "", //? вказуємо значення з бека і атрибут name повинен бути таким самим
-      }}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValue} onSubmit={handleSubmit}>
       <Form>
         <Field name="createdAt" placeholder="Enter task text..." />
+        <Field name="name" placeholder="Enter your name..." />
+
         <button type="submit">Add task</button>
       </Form>
     </Formik>
