@@ -23,4 +23,11 @@ export const addTask = createAsyncThunk("addTask", async (newTask, thunkAPI) => 
   }
 });
 
-// export const deleteTask =
+export const deleteTask = createAsyncThunk("deleteTask", async (taskId, thunkAPI) => {
+  try {
+    const response = await axios.delete(`/tasks/${taskId}`); //? newTask це value форми
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

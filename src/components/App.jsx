@@ -13,16 +13,19 @@ import TaskList from "./redux-async/TaskList/TaskList";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTasks } from "../redux-async/tasksOps";
 import { useEffect } from "react";
+import { selectError, selectLoading } from "../redux-async/tasksSlice";
+import TextFilter from "./redux-async/TextFilter/TextFilter";
 
 export default function App() {
   // const lang = useSelector((state) => state.locale.lang);
 
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.tasks.isLoading); //*отримуємо true або false з лоадінга
-  const isError = useSelector((state) => state.tasks.error);
+
+  const isLoading = useSelector(selectLoading); //* отримуємо true або false з лоадінга
+  const isError = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchTasks()); //*запуск операції https запиту
+    dispatch(fetchTasks()); //*запуск операції
   }, [dispatch]);
 
   return (
@@ -42,6 +45,7 @@ export default function App() {
     <Layout>
       <h1>HTTP requests with Redux</h1>
       <TaskForm />
+      <TextFilter />
       {isError && <Error>Opps, sorry! Something went wrong </Error>}
       {isLoading && <Loader>Loading message</Loader>}
       <TaskList />

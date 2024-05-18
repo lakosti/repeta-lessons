@@ -1,8 +1,15 @@
 import { useSelector } from "react-redux";
 import Task from "../Task/Task";
+import { selectTasks } from "../../../redux-async/tasksSlice";
+// import { selectFilter } from "../../../redux-async/filtersSlice";
 
 export default function TaskList() {
-  const tasks = useSelector((state) => state.tasks.items);
+  const tasks = useSelector(selectTasks);
+  // const textFilter = useSelector(selectFilter);
+
+  // const visibleTasks = tasks.filter((task) =>
+  //   task.text.toLowerCase().includes(textFilter.toLowerCase())
+  // );
 
   return (
     <ul>

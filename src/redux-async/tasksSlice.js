@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addTask, fetchTasks } from "./tasksOps";
+import { addTask, deleteTask, fetchTasks } from "./tasksOps";
 
 const slice = createSlice({
   name: "tasks",
@@ -43,7 +43,22 @@ const slice = createSlice({
       .addCase(addTask.rejected, (state) => {
         state.error = true;
         state.isLoading = false;
+      })
+      .addCase(deleteTask.pending, (state) => {
+        state.error = false;
+        state.isLoading = true;
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        // його id = action.payload.id
+        state.items = state.items.filter((item) => item.id !== action.payload.id); //* повертаємо новий масив у якому немає ніякого співпадіння по айді з тим елементом шо видалили
+        state.isLoading = false;
       }),
 });
+
+//! ПРОПИСУЄМО ТУТ ВСІ SELECTOR
+export const selectTasks = (state) => state.tasks.items;
+
+export const selectLoading = (state) => state.tasks.isLoading;
+export const selectError = (state) => state.tasks.error;
 
 export default slice.reducer;

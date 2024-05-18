@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
+import { deleteTask } from "../../../redux-async/tasksOps";
 // import css from "./Task.module.css";
 // import { deleteTask } from "../../redux/tasksOps";
 
 export default function Task({ tasks }) {
   const dispatch = useDispatch();
 
-  const handleDelete = () => dispatch();
+  const handleDelete = () => dispatch(deleteTask(tasks.id));
 
   return (
     <div>
