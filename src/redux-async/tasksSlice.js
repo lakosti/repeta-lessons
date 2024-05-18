@@ -58,7 +58,16 @@ const slice = createSlice({
 //! ПРОПИСУЄМО ТУТ ВСІ SELECTOR
 export const selectTasks = (state) => state.tasks.items;
 
+//* простий селектор
 export const selectLoading = (state) => state.tasks.isLoading;
 export const selectError = (state) => state.tasks.error;
+
+//* складний селектор
+export const selectVisibleTasks = (state) => {
+  const tasks = state.tasks.items;
+  const textFilter = state.filters.text;
+
+  return tasks.filter((task) => task.text.toLowerCase().includes(textFilter.toLowerCase()));
+};
 
 export default slice.reducer;
