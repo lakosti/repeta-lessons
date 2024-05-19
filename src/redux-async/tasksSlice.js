@@ -67,7 +67,8 @@ export const selectVisibleTasks = (state) => {
   const tasks = state.tasks.items;
   const textFilter = state.filters.text;
 
-  return tasks.filter((task) => task.text.toLowerCase().includes(textFilter.toLowerCase()));
+  //* createdAt -- значення тексту яке ми фільтруємо
+  return tasks.filter((task) => task.createdAt.toLowerCase().includes(textFilter.toLowerCase()));
 };
 
 export default slice.reducer;
