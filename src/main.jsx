@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./components/App";
+// import App from "./components/App";
+import App from "./components/INFO/App";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./redux-async/store";
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     {/* <Provider store={store}> */}
     {/* <PersistGate persistor={persistor}> */}
     <Provider store={store}>
+      {/* <App /> */}
       <App />
     </Provider>
     {/* </PersistGate> */}
